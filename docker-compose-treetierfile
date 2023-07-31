@@ -1,0 +1,30 @@
+services:
+   db:
+      image: mysql
+      ports:
+         - 3306
+      environment:
+           MYSQL_ROOT_PASSWORD: Pass@123
+           MYSQL_DATABASE: wordpressdb
+      networks:
+         - backend
+   web:
+       image: nginx
+       ports:
+         - 80:80
+       depends_on:
+               - db
+       networks:
+           - frontend
+   app:
+     image: php:7.4-fpm
+     ports:
+       - 9000
+     depends_on:
+           - db
+     networks:
+        - frontend
+        - backend
+networks:
+   frontend:
+   backend:
