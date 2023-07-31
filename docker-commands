@@ -1,0 +1,58 @@
+sudo yum install docker -y
+sudo service docker start
+sudo service docker status
+docker pull nginx
+docker images
+docker run nginx
+docker run -d nginx
+docker ps
+docker stop <container ID>
+docker ps -a
+docker rm
+docker stop
+docker exec -it <container ID> ls
+docker exec -it <container ID> /bin/bash
+docker exec -it <container ID>/bin/sh
+docker run -it -d nginx /bin/bash
+touch ravi.html (create empty file)
+echo "this is ravi" > ravi.html (to write in file)
+docker attach
+docker run -it -d --name majhanginx nginx
+docker stop $(docker ps )
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q)
+docker run -it -d -p 80:80 --name mynginx nginx = add port number to container
+docker start <container ID>
+docker inspect <Container ID>
+docker commit <Contianer ID> docker commit is basically taking a "snapshot" of the current state of the "running" container and save it as an image.
+docker images
+docker tag myupdatednginx:v1.0  devopsbaby/updatednginx:v1.0
+[root@ip-172-31-90-82 ec2-user]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: 
+Password:
+docker push 
+docker pull
+docker export 8421b1917aff > myupdatedcontainer.tar convert image into tar file
+docker save -o savewalatar.tar nginx
+docker load  -i savewalatar.tar
+docker run -d -p3306 -e MYSQL_ROOT_PASSWORD=Pass@123 -e MYSQL_DATABASE=fb mysql (run sql container)
+docker logs
+docker run -d -p80:80 -e WORDPRESS_DB_HOST=wonderful_matsumoto -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=Pass@123 -e WORDPRESS_DB_NAME=fb --link wonderful_matsumoto:mysql wordpress
+docker build .
+docker build . -t majhaimage
+docker build . -f majhadockerfile -t majha
+docker run -v /home/ec2-user/mysqlbackup:/var/lib/mysql/ -d -p3306 -e MYSQL_ROOT_PASSWORD=Pass@123 -e MYSQL_DATABASE=facebook --name mymysql mysql (merge volumes)
+docker volume create myvolume (create docker volume)
+docker volume ls
+docker volume inspect myvolume
+docker volume rm myvolume
+docker volume prune [options] (Remove all unused local volumes. Unused local volumes are those which are not referenced by any containers. By default, it only removes anonymous volumes.)
+docker network create frontend (create docker network)
+docker network ls (shows docker networks)
+docker network inspect bdd1cdb97631
+docker network rm bdd1cdb97631
+docker run -d -p 80:80 --network frontend nginximg
+docker network connect frontend db32650c55c7 (add container to image)
+docker network disconnect backend phpcontainer (remove container from network)
+
